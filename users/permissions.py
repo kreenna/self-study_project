@@ -8,7 +8,7 @@ class IsModerator(permissions.BasePermission):
 
 class IsCreator(permissions.BasePermission):
     def has_object_permission(self, request, view, obj):
-        return obj.creator == request.user
+        return obj.user == request.user
 
 
 class IsSelf(permissions.BasePermission):
