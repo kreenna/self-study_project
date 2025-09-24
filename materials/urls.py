@@ -6,8 +6,8 @@ from materials.views import CourseViewSet, LessonViewSet, TestViewSet, QuestionV
 app_name = MaterialsConfig.name
 
 router = SimpleRouter()
-router.register(r"courses", CourseViewSet, basename="courses")
-router.register(r"lessons", LessonViewSet, basename="lessons")
+router.register(r'courses', CourseViewSet, basename='courses')
+router.register(r'lessons', LessonViewSet, basename='lessons')
 router.register(r'tests', TestViewSet, basename='test')
 router.register(r'questions', QuestionViewSet, basename='questions')
 router.register(r'answers', AnswerViewSet, basename='answers')

@@ -20,7 +20,6 @@ class Course(models.Model):
 class Lesson(models.Model):
     title = models.CharField(max_length=250, verbose_name="Название")
     description = models.TextField(verbose_name="Описание")
-    video = models.URLField(verbose_name="Ссылка на видео-урок")
     course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name="lessons", verbose_name="Курс")
     user = models.ForeignKey(AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="lessons",
                              verbose_name="Создатель")
