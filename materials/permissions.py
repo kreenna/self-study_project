@@ -46,22 +46,7 @@ class IsCourseCreator(permissions.BasePermission):
                 course = lesson.course
                 return course.user == request.user
 
-            if view.basename == "question":
-                test_id = request.data.get("test")
-
-                if not test_id:
-                    return False
-
-                try:
-                    test = Test.objects.get(id=test_id)
-                except Exception:
-                    return False
-
-                lesson = test.lesson
-                course = lesson.course
-                return course.user == request.user
-
-            if view.basename == "answer":
+            if view.basename == "question" or "answer":
                 test_id = request.data.get("test")
                 if not test_id:
                     return False
@@ -77,9 +62,5 @@ class IsCourseCreator(permissions.BasePermission):
 
             # для других случаев нужна авторизация
             return request.user.is_authenticated
-
-        # для остальных методов позволяем читать
-        if request.method in permissions.SAFE_METHODS:
-            return True
 
         return True
