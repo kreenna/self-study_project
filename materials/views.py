@@ -104,9 +104,12 @@ class ChoiceViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
 
     def perform_create(self, serializer):
-        question = serializer.validated_data.get("answer")
+        question = serializer.validated_data.get("question")
         chosen_answer = serializer.validated_data.get("chosen_answer")
-        is_right = chosen_answer.is_correct if chosen_answer else False
+        if chosen_answer.is_correct and question == chosen_answer.question:
+            is_right = True
+        else:
+            is_right = False
         serializer.save(user=self.request.user, question=question, chosen_answer=chosen_answer, is_right=is_right)
 
     def get_permissions(self):
