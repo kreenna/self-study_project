@@ -29,7 +29,7 @@ class QuestionAdmin(admin.ModelAdmin):
 
 @admin.register(Answer)
 class AnswerAdmin(admin.ModelAdmin):
-    list_display = ("id", "user", "test", "content", "is_correct")
+    list_display = ("id", "user", "question", "content", "is_correct")
     list_filter = ("is_correct",)
     search_fields = ("id", "user", "content")
 
