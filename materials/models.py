@@ -62,7 +62,7 @@ class Question(models.Model):
 
 class Answer(models.Model):
     content = models.TextField(verbose_name="Вариант ответа")
-    test = models.ForeignKey(Test, on_delete=models.CASCADE, related_name="answers", verbose_name="Тест")
+    question = models.ForeignKey(Question, on_delete=models.CASCADE, related_name="answers", verbose_name="Вопрос")
     is_correct = models.BooleanField(default=False)
     user = models.ForeignKey(AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="answers",
                              verbose_name="Создатель")

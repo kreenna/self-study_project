@@ -32,7 +32,7 @@ class QuestionSerializer(serializers.ModelSerializer):
 class AnswerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Answer
-        fields = ["id", "content", "test", "is_correct"]
+        fields = ["id", "content", "question", "is_correct"]
 
 
 class ChoiceSerializer(serializers.ModelSerializer):
