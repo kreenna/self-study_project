@@ -32,7 +32,8 @@ class MaterialsPermissionsTest(APITestCase):
                                             user=self.creator)
         self.test = Test.objects.create(topic="Test Topic", lesson=self.lesson, user=self.creator)
         self.question = Question.objects.create(content="Question?", test=self.test, user=self.creator)
-        self.answer = Answer.objects.create(content="Answer", test=self.test, is_correct=True, user=self.creator)
+        self.answer = Answer.objects.create(content="Answer", question=self.question, is_correct=True,
+                                            user=self.creator)
         self.choice = Choice.objects.create(question=self.question, chosen_answer=self.answer, is_right=False,
                                             user=self.creator)
 
@@ -113,8 +114,8 @@ class MaterialsPermissionsTest(APITestCase):
                         obj_id=self.question.pk)
 
     def test_answer_crud(self):
-        create_data = {"content": "New answer", "test": self.test.pk, "is_correct": False}
-        update_data = {"content": "Updated answer", "test": self.test.pk, "is_correct": False}
+        create_data = {"content": "New answer", "question": self.question.pk, "is_correct": False}
+        update_data = {"content": "Updated answer", "question": self.question.pk, "is_correct": False}
         self.crud_tests("answers", data_create=create_data, data_update=update_data, obj_id=self.answer.pk)
 
 
@@ -138,7 +139,7 @@ class ChoiceViewSetTest(APITestCase):
                                             user=self.creator)
         self.test = Test.objects.create(topic="Test topic", lesson=self.lesson, user=self.creator)
         self.question = Question.objects.create(content="Question?", test=self.test, user=self.creator)
-        self.answer = Answer.objects.create(content="Answer", test=self.test, is_correct=True, user=self.creator)
+        self.answer = Answer.objects.create(content="Answer", question=self.question, is_correct=True, user=self.creator)
 
         # создаем выбор создателя
         self.choice = Choice.objects.create(question=self.question, chosen_answer=self.answer, is_right=True,
