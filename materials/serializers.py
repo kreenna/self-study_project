@@ -6,7 +6,7 @@ from .models import Course, Lesson, Test, Question, Answer, Choice
 class LessonSerializer(serializers.ModelSerializer):
     class Meta:
         model = Lesson
-        fields = ["id", "title", "description", "video", "course", "user"]
+        fields = ["id", "title", "description", "course", "user"]
 
 
 class CourseSerializer(serializers.ModelSerializer):
@@ -32,7 +32,7 @@ class QuestionSerializer(serializers.ModelSerializer):
 class AnswerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Answer
-        fields = ["id", "content", "test", "is_correct"]
+        fields = ["id", "content", "question", "is_correct"]
 
 
 class ChoiceSerializer(serializers.ModelSerializer):

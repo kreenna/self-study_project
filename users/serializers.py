@@ -6,11 +6,11 @@ from .models import CustomUser
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
-        fields = ["id", "email", "phone_number", "avatar", "country", ]
-        extra_kwargs = {"password": {"write_only": True}}
+        fields = ["id", "username", "email", "phone_number", "avatar", "country", "password"]
 
     def create(self, validated_data):
         user = CustomUser(
+            username=validated_data["username"],
             email=validated_data["email"],
             phone_number=validated_data.get("phone_number", ""),
             country=validated_data.get("country", ""),
