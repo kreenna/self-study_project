@@ -61,9 +61,16 @@ poetry install
 pip install -r requirements.txt
 ```
 
-4. Настроить файл `.env` с настройками базы данных, секрета и т.п.
+4. Настроить файл `.env` с настройками базы данных, секрета и т.п
+```
+POSTGRES_DB=self-
+POSTGRES_USER=
+POSTGRES_PASSWORD=
+POSTGRES_HOST=
+POSTGRES_PORT=
+```
 
-5. Сделать миграции и применить их:
+6. Сделать миграции и применить их:
 ```
 python manage.py migrate
 ```
